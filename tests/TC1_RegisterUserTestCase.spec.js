@@ -19,17 +19,24 @@ Test Case 1: Register User
 17. Click 'Delete Account' button
 18. Verify that 'ACCOUNT DELETED!' is visible and click 'Continue' button
 */
-const { before } = require('node:test')
-const {test,expect, chromium} =require('playwright/test')
-let page,browser
-// test.beforeEach(async()=>{
-    
+// const { before } = require('node:test')
+const {test,expect} =require('@playwright/test')
+//  let page,browser
+
+
+// test('Register User',async({page})=>{
+//     await page.goto("http://automationexercise.com")
+//     await expect(page).toHaveTitle("Automation Exercise")
+//     await expect(page.getByAltText("Website for automation practice")).toBeVisible()
+
 // })
-test('Register User',async()=>{
+
+
+test('Register User',async({page})=>{
     // 1. Launch browser
-    browser=await chromium.launch({headless:false})
-    const context=await browser.newContext()
-    page=await context.newPage()
+    // browser=await chromium.launch({headless:false})
+    // const context=await browser.newContext()
+    // page=await context.newPage()
 
     //2. Navigate to url 'http://automationexercise.com'
     await page.goto('http://automationexercise.com')   
@@ -39,8 +46,7 @@ test('Register User',async()=>{
     //4. Click on 'Signup / Login' button
     await page.getByText(' Signup / Login',{exact:true}).click()
     //5. Verify 'New User Signup!' is visible
-    const heading=await page.getByRole('heading',{name:'New User Signup!'}).isVisible()
-    expect(heading).toBeTruthy()
+    await expect(page.getByRole('heading',{name:'New User Signup!'})).toBeVisible()
     //6. Enter name and email address
     await page.getByRole('textbox',{name:"name"}).fill("kashish")
     await page.locator('form').filter({ hasText: 'Signup' }).getByPlaceholder('Email Address').fill("kashish@1234")

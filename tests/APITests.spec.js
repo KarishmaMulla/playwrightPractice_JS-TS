@@ -11,7 +11,8 @@ test("Create User",async({request})=>{
     const response=await request.post('https://reqres.in/api/users',
     {
         data:{"name":"Karishma","job": "Engineer"},
-        header:{"Accept":"application/json"}
+        header:{"Accept":"application/json"},
+        header:{"x-api-key": "reqres-free-v1"}
     });
     console.log(await response.json());
     console.log("post request");
@@ -24,7 +25,7 @@ test("Create User",async({request})=>{
 test("Update user",async({request})=>{
     const response=await request.put('https://reqres.in/api/users/'+userid,
         {
-            data:{"name":"Karishma","job": "Engineer"},
+            data:{"name":"Maheen","job": "Engineer"},
             header:{"Accept":"application/json"}
         });
         console.log(await response.json());
