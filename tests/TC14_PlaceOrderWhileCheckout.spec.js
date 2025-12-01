@@ -40,9 +40,9 @@ await page.goto('http://automationexercise.com')
     //4. Add products to cart
     await page.pause()
     
+``
 
 
 
 
-
-})
+});
